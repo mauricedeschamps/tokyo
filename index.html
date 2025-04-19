@@ -315,11 +315,68 @@
     border-top: 1px solid #e9ecef;
     margin-top: 30px;
 ">
+
+
+<!-- 既存のフッター内または</body>直前に追加 -->
+<button id="scrollToTopBtn" class="scroll-to-top">↑</button>
+
+<style>
+  .scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+  }
+
+  .scroll-to-top.visible {
+    opacity: 1;
+  }
+
+  .scroll-to-top:hover {
+    background-color: #2980b9;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    
+    // スクロールイベントでボタン表示/非表示
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+
+    // クリックで最上部に戻る
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // スムーススクロール
+      });
+    });
+  });
+</script>
+
+
     <div style="margin-bottom: 10px;">
         Contact me
     </div>
     <div>
-        Mo Yasuda - 
+        Mo Yasuda - <br>
         <a href="mailto:mementomorikatsu@gmail.com" style="
             color: #007bff;
             text-decoration: none;
@@ -1093,60 +1150,6 @@
         // Initialize the app when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
-
-<!-- 既存のフッター内または</body>直前に追加 -->
-<button id="scrollToTopBtn" class="scroll-to-top">↑</button>
-
-<style>
-  .scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1000;
-  }
-
-  .scroll-to-top.visible {
-    opacity: 1;
-  }
-
-  .scroll-to-top:hover {
-    background-color: #2980b9;
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const scrollBtn = document.getElementById('scrollToTopBtn');
-    
-    // スクロールイベントでボタン表示/非表示
-    window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
-        scrollBtn.classList.add('visible');
-      } else {
-        scrollBtn.classList.remove('visible');
-      }
-    });
-
-    // クリックで最上部に戻る
-    scrollBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // スムーススクロール
-      });
-    });
-  });
-</script>
 
 </body>
 </html>
