@@ -1,56 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#dc3545">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>Tokyo Area Guide</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22skyblue%22/><text y=%22.9em%22 font-size=%2290%22>🗼</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22skyblue%22/><text y=%22.9em%22 font-size=%2290%22>🗼</text></svg>">
-
-    <style>
-
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        /* 必要に応じて追加のスタイルをここに記述 */
-    </style>
-
-</head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#121212">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Tokyo Guide">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="description" content="Tokyo Area Model Course Guide">
-    <title>Tokyo Area Guide</title>
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-    
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo Area Guide | Model Course Guide</title>
     <style>
         :root {
+            /* Dark theme colors (default) */
             --primary: #e53935;
             --secondary: #1e88e5;
             --background: #121212;
@@ -67,6 +23,8 @@
             --category-text: #e0e0e0;
             --category-active-bg: var(--primary);
             --category-active-text: #ffffff;
+            
+            /* Nature & category colors */
             --nature: #2e7d32;
             --culture: #e65100;
             --urban: #1565c0;
@@ -74,6 +32,7 @@
         }
 
         [data-theme="light"] {
+            /* Light theme colors */
             --background: #f5f5f5;
             --text: #212121;
             --card-bg: #ffffff;
@@ -87,18 +46,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background-color: var(--background);
             margin: 0;
             padding: 0;
-            -webkit-text-size-adjust: 100%;
-            -webkit-tap-highlight-color: transparent;
-            overscroll-behavior: none;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         header {
@@ -107,21 +61,16 @@
             padding: 1.5rem 1rem;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
         h1 {
             margin: 0;
             font-size: 1.8rem;
-            font-weight: 600;
         }
 
         .subtitle {
             font-weight: 300;
             margin: 0.5rem 0 1rem;
-            opacity: 0.9;
         }
 
         .controls {
@@ -142,7 +91,6 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.2s;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .theme-btn {
@@ -155,13 +103,15 @@
             color: var(--button-text);
         }
 
+        .control-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
         .container {
             max-width: 1200px;
             margin: 1rem auto;
             padding: 0 1rem;
-            width: 100%;
-            box-sizing: border-box;
-            flex: 1;
         }
 
         .tab-container {
@@ -169,13 +119,6 @@
             margin-bottom: 1rem;
             overflow-x: auto;
             gap: 0.3rem;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 2px;
-        }
-
-        .tab-container::-webkit-scrollbar {
-            display: none;
         }
 
         .tab {
@@ -187,8 +130,6 @@
             color: var(--tab-text);
             transition: all 0.2s;
             white-space: nowrap;
-            flex-shrink: 0;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .tab.active {
@@ -212,7 +153,6 @@
             color: var(--category-text);
             transition: all 0.2s;
             font-size: 0.9rem;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .category-btn.active {
@@ -221,6 +161,7 @@
             border-color: transparent;
         }
 
+        /* Spot card styles */
         .spot-card {
             background: var(--card-bg);
             border-radius: 8px;
@@ -240,7 +181,6 @@
             margin-top: 0;
             border-bottom: 1px solid rgba(0,0,0,0.1);
             padding-bottom: 0.5rem;
-            font-weight: 600;
         }
 
         .spot-meta {
@@ -298,7 +238,6 @@
             object-fit: cover;
             border-radius: 4px;
             margin: 0.8rem 0;
-            display: block;
         }
 
         .meta-item {
@@ -315,6 +254,7 @@
             opacity: 0.7;
         }
 
+        /* Scroll to top button */
         .scroll-to-top {
             display: block;
             width: 100%;
@@ -328,13 +268,18 @@
             font-size: 1rem;
             text-align: center;
             transition: background-color 0.3s;
-            -webkit-tap-highlight-color: transparent;
         }
 
+        .scroll-to-top:hover {
+            background-color: #c62828;
+        }
+
+        /* Footer styles */
         footer {
             background-color: var(--card-bg);
             padding: 20px;
             text-align: center;
+            font-family: Arial, sans-serif;
             border-top: 1px solid rgba(0,0,0,0.1);
             margin-top: 30px;
         }
@@ -344,105 +289,8 @@
             text-decoration: none;
         }
 
-        .install-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            cursor: pointer;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            -webkit-tap-highlight-color: transparent;
-            animation: pulse 2s infinite;
-        }
-
-        .install-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--header-bg);
-            color: white;
-            padding: 15px;
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-        }
-
-        .install-banner-text {
-            flex: 1;
-            margin-right: 15px;
-        }
-
-        .install-banner-btn {
-            background: white;
-            color: var(--primary);
-            border: none;
-            border-radius: 4px;
-            padding: 8px 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .install-banner-close {
-            background: transparent;
-            color: white;
-            border: none;
-            margin-left: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--header-bg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            transition: opacity 0.3s;
-        }
-
-        .splash-icon {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 20px;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iIzEyMTIxMiIvPjxwYXRoIGQ9Ik05NiwzMkw0OCwxMjB2OTZoOTZ2LTk2WiIgZmlsbD0iI2U1MzkzNSIvPjxwYXRoIGQ9Ik05NiwzMkwxNDQsMTIwdjk2SDk2WiIgZmlsbD0iI2M2MjgyOCIvPjxwYXRoIGQ9Ik05NiwzMkw0OCwxMjBoOTZaIiBmaWxsPSIjZmZjMTA3Ii8+PC9zdmc+');
-            background-size: contain;
-        }
-
-        .splash-title {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .splash-subtitle {
-            color: rgba(255,255,255,0.8);
-            font-size: 1rem;
+        footer a:hover {
+            text-decoration: underline;
         }
 
         @media (min-width: 768px) {
@@ -455,49 +303,14 @@
             h1 {
                 font-size: 2rem;
             }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 1rem;
-            }
             
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .subtitle {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* iOS specific styles */
-        @supports (-webkit-touch-callout: none) {
-            header {
-                padding-top: max(1.5rem, env(safe-area-inset-top));
-            }
-            
-            body {
-                padding-bottom: env(safe-area-inset-bottom);
-            }
-            
-            .install-btn {
-                bottom: calc(20px + env(safe-area-inset-bottom));
-            }
-            
-            .install-banner {
-                padding-bottom: calc(15px + env(safe-area-inset-bottom));
+            .controls {
+                margin: 1.5rem 0;
             }
         }
     </style>
 </head>
 <body data-theme="dark">
-    <div class="splash" id="splash">
-        <div class="splash-icon"></div>
-        <h1 class="splash-title">Tokyo Area Guide</h1>
-        <p class="splash-subtitle">Loading...</p>
-    </div>
-
     <header>
         <h1 id="appTitle">Tokyo Area Model Course Guide</h1>
         <p class="subtitle" id="appSubtitle">10 Selected Popular Spots</p>
@@ -514,576 +327,616 @@
     </header>
 
     <div class="container">
-        <div class="tab-container" id="directionTabs"></div>
-        <div class="category-filter" id="categoryFilters"></div>
-        <div id="spots-container"></div>
+        <div class="tab-container" id="directionTabs">
+            <!-- Tabs will be generated by JavaScript -->
+        </div>
+
+        <div class="category-filter" id="categoryFilters">
+            <!-- Category filters will be generated by JavaScript -->
+        </div>
+
+        <div id="spots-container">
+            <!-- Spot cards will be inserted here -->
+        </div>
     </div>
 
+    <!-- Scroll to top button -->
     <button id="scrollToTopBtn" class="scroll-to-top">↑ Back to Top</button>
-    <button id="installBtn" class="install-btn">＋</button>
-    
-    <div class="install-banner" id="installBanner">
-        <div class="install-banner-text" id="installBannerText">Add Tokyo Guide to your home screen for full experience</div>
-        <button class="install-banner-btn" id="installBannerBtn">Install</button>
-        <button class="install-banner-close" id="installBannerClose">×</button>
-    </div>
 
     <footer>
-        <div style="margin-bottom: 10px;">Contact me</div>
-        <div><a href="mailto:mementomorikatsu@gmail.com">mementomorikatsu@gmail.com</a></div>
+        <div style="margin-bottom: 10px;">
+            Contact me
+        </div>
+        <div>
+            Mo Yasuda - <br>
+            <a href="mailto:mementomorikatsu@gmail.com">
+                mementomorikatsu@gmail.com
+            </a>
+        </div>
     </footer>
 
     <script>
-        // アプリの状態管理
-        let currentTheme = localStorage.getItem('theme') || 'dark';
-        let currentLang = localStorage.getItem('lang') || 'en';
-        let currentFilter = {
-            direction: 'all',
-            category: 'all'
-        };
-        
-        // 翻訳データ
+        // Translation data
         const translations = {
             en: {
                 appTitle: "Tokyo Area Model Course Guide",
                 appSubtitle: "10 Selected Popular Spots",
-                directions: { all: "All", east: "East", west: "West", south: "South", north: "North", central: "Central" },
-                categories: { all: "All", nature: "Nature", culture: "Culture", urban: "Urban", food: "Food" },
-                time: "Time", budget: "Budget", bestSeason: "Best Season", modelCourse: "Model Course",
-                darkMode: "Light Mode", lightMode: "Dark Mode", switchLang: "日本語",
-                noResults: "No spots found", scrollToTop: "↑ Back to Top",
-                installPrompt: "Add Tokyo Guide to your home screen for full experience",
-                installBtn: "Install",
-                iosInstall: "Tap Share, then 'Add to Home Screen'"
+                directions: {
+                    all: "All",
+                    east: "East",
+                    west: "West",
+                    south: "South",
+                    north: "North",
+                    central: "Central"
+                },
+                categories: {
+                    all: "All",
+                    nature: "Nature",
+                    culture: "Culture",
+                    urban: "Urban",
+                    food: "Food"
+                },
+                time: "Time",
+                budget: "Budget",
+                bestSeason: "Best Season",
+                modelCourse: "Model Course",
+                darkMode: "Dark Mode",
+                lightMode: "Light Mode",
+                switchLang: "日本語",
+                noResults: "No spots found matching your criteria",
+                scrollToTop: "↑ Back to Top"
             },
             ja: {
                 appTitle: "東京周辺モデルコースガイド",
                 appSubtitle: "人気スポット厳選10選",
-                directions: { all: "すべて", east: "東", west: "西", south: "南", north: "北", central: "都心" },
-                categories: { all: "すべて", nature: "自然", culture: "文化", urban: "都会", food: "食事" },
-                time: "時間", budget: "予算", bestSeason: "おすすめ時期", modelCourse: "モデルコース",
-                darkMode: "ライトモード", lightMode: "ダークモード", switchLang: "English",
-                noResults: "該当するスポットが見つかりません", scrollToTop: "↑ ページトップに戻る",
-                installPrompt: "ホーム画面に追加してフル機能を利用しましょう",
-                installBtn: "インストール",
-                iosInstall: "共有をタップし、'ホーム画面に追加'を選択"
+                directions: {
+                    all: "すべて",
+                    east: "東",
+                    west: "西",
+                    south: "南",
+                    north: "北",
+                    central: "都心"
+                },
+                categories: {
+                    all: "すべて",
+                    nature: "自然",
+                    culture: "文化",
+                    urban: "都会",
+                    food: "食事"
+                },
+                time: "時間",
+                budget: "予算",
+                bestSeason: "おすすめ時期",
+                modelCourse: "モデルコース",
+                darkMode: "ダークモード",
+                lightMode: "ライトモード",
+                switchLang: "English",
+                noResults: "該当するスポットが見つかりませんでした",
+                scrollToTop: "↑ ページトップに戻る"
             }
         };
 
-        // スポットデータ
+        // Spot data (abbreviated for example)
         const spots = [
-            {
+          
+          {
                 id: 1,
-                titles: {
-                    en: "Asakusa & Tokyo Skytree",
-                    ja: "浅草＆東京スカイツリー"
-                },
-                descriptions: {
-                    en: "Experience traditional Japan in Asakusa with Sensoji Temple, then visit the modern Tokyo Skytree for panoramic views.",
-                    ja: "浅草の浅草寺で伝統的な日本を体験し、その後現代的な東京スカイツリーでパノラマビューを楽しめます。"
-                },
+                titles: { ja: "浅草・スカイツリー", en: "Asakusa & Tokyo Skytree" },
                 direction: "east",
                 categories: ["culture", "urban"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "4-5 hours",
-                    ja: "4-5時間"
-                },
-                budget: {
-                    en: "¥3,000-¥5,000",
-                    ja: "3,000円～5,000円"
-                },
-                bestSeason: {
-                    en: "Spring, Autumn",
-                    ja: "春、秋"
+                image: "https://user0514.cdnw.net/shared/img/thumb/town321511016_TP_V4.jpg",
+                descriptions: {
+                    ja: "東京の伝統と現代が融合するエリア。浅草寺で日本の伝統文化を体験し、スカイツリーから東京を一望できます。",
+                    en: "Area where Tokyo's tradition and modernity merge. Experience Japanese traditional culture at Sensoji Temple and enjoy panoramic views from Tokyo Skytree."
                 },
                 modelCourses: {
-                    en: [
-                        "Start at Sensoji Temple (1-2 hours)",
-                        "Walk through Nakamise shopping street",
-                        "Take a river cruise from Asakusa to Odaiba (optional)",
-                        "Visit Tokyo Skytree (2-3 hours)"
-                    ],
                     ja: [
-                        "浅草寺からスタート（1-2時間）",
-                        "仲見世通りを散策",
-                        "浅草からお台場まで水上バスで移動（オプション）",
-                        "東京スカイツリーを訪問（2-3時間）"
+                        "10:00 浅草寺雷門到着",
+                        "10:15 仲見世通り散策（人形焼きやお土産購入）",
+                        "11:00 浅草寺参拝",
+                        "12:00 浅草で天丼やもんじゃ焼きで昼食",
+                        "13:30 東京スカイツリーへ移動",
+                        "14:00 スカイツリー展望台（350m）から東京を一望",
+                        "16:00 スカイツリーショッピングモールで買い物"
+                    ],
+                    en: [
+                        "10:00 Arrive at Kaminarimon Gate",
+                        "10:15 Explore Nakamise Shopping Street (try ningyo-yaki sweets)",
+                        "11:00 Visit Sensoji Temple",
+                        "12:00 Lunch in Asakusa (try tempura rice bowl or monjayaki)",
+                        "13:30 Move to Tokyo Skytree",
+                        "14:00 Enjoy panoramic views from Skytree observatory (350m)",
+                        "16:00 Shopping at Skytree Town"
                     ]
+                },
+                timeRequired: { ja: "5-6時間", en: "5-6 hours" },
+                budget: { ja: "¥5,000-8,000", en: "¥5,000-8,000" },
+                bestSeason: { ja: "通年（春は桜がおすすめ）", en: "All year (cherry blossoms in spring)" }
+            },
+                 {
+         id: 2,
+         titles: {
+             ja: "お台場・豊洲",
+             en: "Odaiba & Toyosu"
+         },
+         direction: "east",
+         categories: ["urban"],
+         image: "https://as2.ftcdn.net/jpg/02/24/28/71/1000_F_224287198_DwO4jKCHfGwCFpYzTuJgGbBL76DcAyhE.jpg",
+         descriptions: {
+             ja: "未来都市のような景観が特徴。ショッピングモールや博物館、フードコートなどが充実しています。",
+             en: "Features futuristic cityscape with shopping malls, museums, and diverse food courts."
+         },
+         modelCourses: {
+             ja: [
+                 "11:00 ゆりかもめでお台場へ",
+                 "11:30 チームラボプラネッツ体験（事前予約推奨）",
+                 "13:00 デックス東京ビーチで海鮮丼ランチ",
+                 "14:30 パレットタウン散策（大観覧車など）",
+                 "16:00 豊洲市場へ移動（お寿司や海鮮料理の夕食）",
+                 "18:00 豊洲の夜景を楽しむ"
+             ],
+             en: [
+                 "11:00 Take Yurikamome to Odaiba",
+                 "11:30 Experience teamLab Planets (reservation recommended)",
+                 "13:00 Seafood bowl lunch at DECKS Tokyo Beach",
+                 "14:30 Explore Palette Town (including giant Ferris wheel)",
+                 "16:00 Move to Toyosu Market (sushi/seafood dinner)",
+                 "18:00 Enjoy night views of Toyosu"
+             ]
+         },
+         timeRequired: {
+             ja: "5-7時間",
+             en: "5-7 hours"
+         },
+         budget: {
+             ja: "¥6,000-10,000",
+             en: "¥6,000-10,000"
+         },
+         bestSeason: {
+             ja: "通年（夏は花火大会あり）",
+             en: "All year (summer fireworks)"
+         }
+     },
+        {
+       id: 3,
+       titles: {
+           ja: "高尾山ハイキング",
+           en: "Mount Takao Hiking"
+       },
+       direction: "west",
+       categories: ["nature"],
+       image: "https://user0514.cdnw.net/shared/img/thumb/ELL95_takaozannokouyou20141127084800_TP_V4.jpg",
+       descriptions: {
+           ja: "都心から1時間でアクセスできる自然豊かな山。初心者向けのコースから上級者向けまで複数の登山道があります。",
+           en: "Nature-rich mountain accessible within 1 hour from central Tokyo. Offers multiple trails from beginner to advanced levels."
+       },
+       modelCourses: {
+           ja: [
+               "8:00 新宿駅出発（京王線特急）",
+               "9:00 高尾山口駅到着",
+               "9:30 登山開始（1号路を選択）",
+               "11:30 山頂到着（昼食と休憩）",
+               "12:30 山頂散策（天気が良ければ富士山も眺望可）",
+               "13:30 下山開始（吊り子コースなど別ルートで）",
+               "15:30 山麓到着・温泉で疲れを癒やす",
+               "17:00 東京に戻る"
+           ],
+           en: [
+               "8:00 Depart from Shinjuku (Keio Line Limited Express)",
+               "9:00 Arrive at Takaosanguchi Station",
+               "9:30 Start hiking (Trail No.1 recommended)",
+               "11:30 Reach summit (lunch break)",
+               "12:30 Explore summit (view Mt.Fuji on clear days)",
+               "13:30 Start descent (different route like Suspension Bridge course)",
+               "15:30 Return to base (relax at hot spring)",
+               "17:00 Back to Tokyo"
+           ]
+       },
+       timeRequired: {
+           ja: "終日",
+           en: "Full day"
+       },
+       budget: {
+           ja: "¥3,000-5,000",
+           en: "¥3,000-5,000"
+       },
+       bestSeason: {
+           ja: "春（4-5月）・秋（10-11月）",
+           en: "Spring (Apr-May) / Autumn (Oct-Nov)"
+       }
+   },
+   {
+       id: 4,
+       titles: {
+           ja: "箱根温泉旅",
+           en: "Hakone Hot Springs"
+       },
+       direction: "west",
+       categories: ["nature", "culture"],
+       image: "https://t3.ftcdn.net/jpg/05/80/45/68/360_F_580456842_y0lHOEq9EYBF9ntWZjtwlImGQOkdRGkP.webp",
+       descriptions: {
+           ja: "富士山を望む温泉地。ロープウェイや海賊船、美術館など見所が豊富で日帰り温泉も楽しめます。",
+           en: "Hot spring resort with Mt.Fuji views. Enjoy ropeways, pirate ships, museums, and day-trip hot springs."
+       },
+       modelCourses: {
+           ja: [
+               "8:00 新宿駅出発（ロマンスカー）",
+               "9:30 箱根湯本到着",
+               "10:00 箱根登山電車で強羅へ",
+               "11:00 早雲山からロープウェイで大涌谷へ",
+               "12:30 黒たまごと地元料理で昼食",
+               "13:30 海賊船で芦ノ湖クルーズ",
+               "15:00 箱根関所跡や箱根神社参拝",
+               "16:30 日帰り温泉でくつろぐ",
+               "18:00 帰路につく"
+           ],
+           en: [
+               "8:00 Depart Shinjuku (Romancecar train)",
+               "9:30 Arrive at Hakone-Yumoto",
+               "10:00 Take Hakone Tozan Railway to Gora",
+               "11:00 Ropeway from Sounzan to Owakudani",
+               "12:30 Lunch with black eggs and local cuisine",
+               "13:30 Pirate ship cruise on Lake Ashi",
+               "15:00 Visit Hakone Checkpoint and Hakone Shrine",
+               "16:30 Relax at day-trip hot spring",
+               "18:00 Return to Tokyo"
+           ]
+       },
+       timeRequired: {
+           ja: "終日",
+           en: "Full day"
+       },
+       budget: {
+           ja: "¥8,000-12,000",
+           en: "¥8,000-12,000"
+       },
+       bestSeason: {
+           ja: "通年（秋の紅葉が特に美しい）",
+           en: "All year (especially beautiful in autumn)"
+     }
+     },
+   {
+     id: 5,
+                titles: {
+                    ja: "鎌倉散策",
+                    en: "Kamakura Exploration"
+                },
+                direction: "south",
+                categories: ["culture", "nature"],
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQKl6IOQJY5iJ8ys9VS2Gbyg4I9HIaVEezB_A8FMPHiD-4UPmDoAIpseHd&s=10",
+                descriptions: {
+                    ja: "歴史ある寺社と海の景色が楽しめる古都。大仏や長谷寺、由比ヶ浜海岸など見所がたくさんあります。",
+                    en: "Ancient capital with historic temples and ocean views. Features Great Buddha, Hasedera Temple, and Yuigahama Beach."
+                },
+                modelCourses: {
+                    ja: [
+                        "8:30 東京駅出発（横須賀線）",
+                        "9:30 鎌倉駅到着",
+                        "10:00 鶴岡八幡宮参拝",
+                        "11:30 小町通りでショッピング＆軽食",
+                        "13:00 長谷寺へ移動（紫陽花の季節が特に美しい）",
+                        "14:30 鎌倉大仏見学",
+                        "16:00 由比ヶ浜海岸でくつろぐ",
+                        "17:30 鎌倉駅から帰京"
+                    ],
+                    en: [
+                        "8:30 Depart from Tokyo Station (Yokosuka Line)",
+                        "9:30 Arrive at Kamakura Station",
+                        "10:00 Visit Tsurugaoka Hachimangu Shrine",
+                        "11:30 Shopping & snacks at Komachi Street",
+                        "13:00 Move to Hasedera Temple (hydrangeas in June)",
+                        "14:30 See the Great Buddha",
+                        "16:00 Relax at Yuigahama Beach",
+                        "17:30 Return from Kamakura"
+                    ]
+                },
+                timeRequired: {
+                    ja: "終日",
+                    en: "Full day"
+                },
+                budget: {
+                    ja: "¥4,000-6,000",
+                    en: "¥4,000-6,000"
+                },
+                bestSeason: {
+                    ja: "6月（紫陽花）・秋（紅葉）",
+                    en: "June (hydrangeas) / Autumn (fall colors)"
                 }
             },
-            {
-                id: 2,
+                     {
+             id: 6,
+             titles: {
+                 ja: "江の島・湘南",
+                 en: "Enoshima & Shonan"
+             },
+             direction: "south",
+             categories: ["nature", "food"],
+             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ6SsNsCuhoqsgQJf10TAwqy2I7_eaG8e-Wn08fGGLw-cD0g4WTUc4xpf8&s=10",
+             descriptions: {
+                 ja: "海と島の風光明媚なエリア。江の島の神社や展望台、湘南の海鮮料理が楽しめます。",
+                 en: "Scenic coastal area with island shrines, observation decks, and fresh seafood cuisine."
+             },
+             modelCourses: {
+                 ja: [
+                     "9:00 新宿駅出発（小田急線）",
+                     "10:00 片瀬江ノ島駅到着",
+                     "10:30 江の島散策（江島神社・展望台）",
+                     "12:30 しらす料理や海鮮丼で昼食",
+                     "14:00 湘南海岸散歩（サーファー見学）",
+                     "15:30 鎌倉へ移動（オプション）",
+                     "17:00 帰路につく"
+                 ],
+                 en: [
+                     "9:00 Depart Shinjuku (Odakyu Line)",
+                     "10:00 Arrive at Katase-Enoshima Station",
+                     "10:30 Explore Enoshima (shrines & observatory)",
+                     "12:30 Lunch with whitebait or seafood bowls",
+                     "14:00 Walk along Shonan Beach (watch surfers)",
+                     "15:30 Option to move to Kamakura",
+                     "17:00 Return to Tokyo"
+                 ]
+             },
+             timeRequired: {
+                 ja: "5-7時間",
+                 en: "5-7 hours"
+             },
+             budget: {
+                 ja: "¥5,000-8,000",
+                 en: "¥5,000-8,000"
+             },
+             bestSeason: {
+                 ja: "夏（海水浴）・秋（快適な気候）",
+                 en: "Summer (beach season) / Autumn (pleasant weather)"
+             }
+         },
+         {
+             id: 7,
+             titles: {
+                 ja: "横浜中華街",
+                 en: "Yokohama Chinatown"
+             },
+             direction: "south",
+             categories: ["food", "culture"],
+             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5Oud6ps0QxogBa6hDIs7Q4xJPm5l3iW7xmW6ykdpO84DE4nu-mClKDDCn&s=10",
+             descriptions: {
+                 ja: "日本最大の中華街。本格中華料理から点心まで、様々な中華グルメが楽しめます。",
+                 en: "Japan's largest Chinatown offering authentic Chinese cuisine from dim sum to full-course meals."
+             },
+             modelCourses: {
+                 ja: [
+                     "11:00 横浜駅到着",
+                     "11:30 中華街入り口の関帝廟参拝",
+                     "12:00 点心食べ歩き（小籠包・焼き小籠包・餃子など）",
+                     "14:00 山下公園散歩（海の見える公園）",
+                     "15:30 赤レンガ倉庫でショッピング＆スイーツ",
+                     "17:00 中華街で夕食（北京ダックや上海蟹など）",
+                     "19:00 みなとみらいの夜景を見て帰路"
+                 ],
+                 en: [
+                     "11:00 Arrive at Yokohama Station",
+                     "11:30 Visit Kanteibyo Temple at Chinatown entrance",
+                     "12:00 Dim sum walk (try xiaolongbao, dumplings etc)",
+                     "14:00 Walk at Yamashita Park (ocean view)",
+                     "15:30 Shopping & sweets at Red Brick Warehouse",
+                     "17:00 Dinner in Chinatown (Peking duck, Shanghai crab)",
+                     "19:00 Night views at Minato Mirai before return"
+                 ]
+             },
+             timeRequired: {
+                 ja: "5-7時間",
+                 en: "5-7 hours"
+             },
+             budget: {
+                 ja: "¥5,000-8,000",
+                 en: "¥5,000-8,000"
+             },
+             bestSeason: {
+                 ja: "通年（春節時期は特に賑わい）",
+                 en: "All year (especially lively during Chinese New Year)"
+             }
+         },
+         // 北エリア
+         {
+             id: 8,
+             titles: {
+                 ja: "日光東照宮",
+                 en: "Nikko Toshogu Shrine"
+             },
+             direction: "north",
+             categories: ["culture", "nature"],
+             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7QhfzUTs2b0pcSFLwPba29IXI02dqDXcBAIb_yZlSw_avAjIu-At7Zog&s=10",
+             descriptions: {
+                 ja: "世界遺産に登録された絢爛豪華な神社。徳川家康を祀り、陽明門や三猿などの見所が多数あります。",
+                 en: "UNESCO World Heritage site enshrining Tokugawa Ieyasu, featuring ornate structures like Yomeimon Gate and Three Wise Monkeys."
+             },
+             modelCourses: {
+                 ja: [
+                     "7:30 浅草駅出発（東武鉄道特急）",
+                     "9:30 日光到着",
+                     "10:00 東照宮見学（陽明門・三猿・眠り猫など）",
+                     "12:00 日光名物湯葉料理で昼食",
+                     "13:30 輪王寺・二荒山神社参拝",
+                     "15:00 華厳の滝見学（日本の三大瀑布の一つ）",
+                     "16:30 日光駅周辺でお土産購入",
+                     "17:30 帰路につく"
+                 ],
+                 en: [
+                     "7:30 Depart Asakusa (Tobu Limited Express)",
+                     "9:30 Arrive in Nikko",
+                     "10:00 Visit Toshogu (Yomeimon, Three Monkeys, Sleeping Cat)",
+                     "12:00 Lunch with local yuba (tofu skin) cuisine",
+                     "13:30 Visit Rinnoji & Futarasan Shrines",
+                     "15:00 See Kegon Falls (one of Japan's three great waterfalls)",
+                     "16:30 Souvenir shopping near Nikko Station",
+                     "17:30 Return to Tokyo"
+                 ]
+             },
+             timeRequired: {
+                 ja: "終日",
+                 en: "Full day"
+             },
+             budget: {
+                 ja: "¥8,000-12,000",
+                 en: "¥8,000-12,000"
+             },
+             bestSeason: {
+                 ja: "春（5月）・秋（10-11月）",
+                 en: "Spring (May) / Autumn (Oct-Nov)"
+             }
+         },
+                {
+           id: 9,
+           titles: {
+               ja: "富士山五合目",
+               en: "Mount Fuji 5th Station"
+           },
+           direction: "west",
+           categories: ["nature"],
+           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7lD6Selenp3CVkTp_uxEFRasOW8PEOWnITU1-N6FHln0hpIA48ES19t8&s=10",
+           descriptions: {
+               ja: "富士山の登山基地として知られる五合目。登山シーズン以外でも雄大な景色が楽しめます。",
+               en: "Gateway to Mt.Fuji climbing with spectacular views even outside climbing season."
+           },
+           modelCourses: {
+               ja: [
+                   "7:00 新宿駅出発（高速バス）",
+                   "10:00 富士スバルライン五合目到着",
+                   "10:30 散策（天気が良ければ富士山頂を望む）",
+                   "12:00 山小屋風レストランで昼食",
+                   "13:30 忍野八海へ移動",
+                   "15:00 富士山の湧水で有名な忍野八海散策",
+                   "16:30 帰路につく"
+               ],
+               en: [
+                   "7:00 Depart Shinjuku (highway bus)",
+                   "10:00 Arrive at Fuji Subaru Line 5th Station",
+                   "10:30 Walk around (view summit if weather permits)",
+                   "12:00 Lunch at mountain lodge-style restaurant",
+                   "13:30 Move to Oshino Hakkai",
+                   "15:00 Explore Oshino Hakkai's famous springs",
+                   "16:30 Return to Tokyo"
+               ]
+           },
+           timeRequired: {
+               ja: "終日",
+               en: "Full day"
+           },
+           budget: {
+               ja: "¥7,000-10,000",
+               en: "¥7,000-10,000"
+           },
+           bestSeason: {
+               ja: "夏（登山シーズン）・秋（紅葉）",
+               en: "Summer (climbing season) / Autumn (fall colors)"
+           }
+       },
+       // 都心エリア
+       {
+           id: 10,
+           titles: {
+               ja: "新宿散策",
+               en: "Shinjuku Exploration"
+           },
+           direction: "central",
+           categories: ["urban", "food"],
+           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcqa0_DlCa0jt5914e51EbxBsmlstGtnEBR0o49kvyA7JyAHEzg7_GoT8&s=10",
+           descriptions: {
+               ja: "東京を代表する繁華街。高層ビル群から歌舞伎町、新宿御苑まで多様な顔を持ちます。",
+               en: "Tokyo's premier entertainment district ranging from skyscrapers to Kabukicho to Shinjuku Gyoen garden."
+           },
+           modelCourses: {
+               ja: [
+                   "10:00 新宿駅到着",
+                   "10:30 東京都庁展望台（無料）",
+                   "12:00 思い出横丁で串焼きとビア",
+                   "14:00 新宿御苑散策（広大な庭園）",
+                   "16:00 歌舞伎町周辺を散策",
+                   "18:00 高層ビルのレストランで夜景を楽しみながら夕食"
+               ],
+               en: [
+                   "10:00 Arrive at Shinjuku Station",
+                   "10:30 Tokyo Metropolitan Government Building observatory (free)",
+                   "12:00 Yakitori and beer at Omoide Yokocho",
+                   "14:00 Walk through Shinjuku Gyoen (huge garden)",
+                   "16:00 Explore Kabukicho area",
+                   "18:00 Dinner with night views at skyscraper restaurant"
+               ]
+           },
+           timeRequired: {
+               ja: "5-7時間",
+               en: "5-7 hours"
+           },
+           budget: {
+               ja: "¥5,000-10,000",
+               en: "¥5,000-10,000"
+           },
+           bestSeason: {
+               ja: "通年（春は新宿御苑の桜）",
+               en: "All year (cherry blossoms at Shinjuku Gyoen in spring)"
+           }
+       },
+             {
+                id: 11,
                 titles: {
-                    en: "Shibuya & Harajuku",
-                    ja: "渋谷＆原宿"
-                },
-                descriptions: {
-                    en: "Explore Tokyo's youth culture in Harajuku's Takeshita Street and experience the famous Shibuya Crossing.",
-                    ja: "原宿の竹下通りで東京の若者文化を探索し、有名な渋谷スクランブル交差点を体験しましょう。"
+                    ja: "渋谷・原宿",
+                    en: "Shibuya & Harajuku"
                 },
                 direction: "central",
                 categories: ["urban", "food"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "3-4 hours",
-                    ja: "3-4時間"
-                },
-                budget: {
-                    en: "¥2,000-¥10,000",
-                    ja: "2,000円～10,000円"
-                },
-                bestSeason: {
-                    en: "All year",
-                    ja: "通年"
-                },
-                modelCourses: {
-                    en: [
-                        "Start at Meiji Shrine (30-60 mins)",
-                        "Explore Takeshita Street in Harajuku (1 hour)",
-                        "Walk to Shibuya via Cat Street",
-                        "Experience Shibuya Crossing and shopping (1-2 hours)"
-                    ],
-                    ja: [
-                        "明治神宮からスタート（30-60分）",
-                        "原宿の竹下通りを探索（1時間）",
-                        "キャットストリートを通って渋谷へ",
-                        "渋谷スクランブル交差点とショッピングを体験（1-2時間）"
-                    ]
-                }
-            },
-            {
-                id: 3,
-                titles: {
-                    en: "Shinjuku Gyoen & Golden Gai",
-                    ja: "新宿御苑＆ゴールデン街"
-                },
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSgtIF_5RhfCGdiKkkKpgeEZ-WgBhf5n8upwc6EIGbnTKcNnhmYI5qIL9F&s=10",
                 descriptions: {
-                    en: "Enjoy nature at Shinjuku Gyoen National Garden, then experience Tokyo's nightlife in Golden Gai.",
-                    ja: "新宿御苑で自然を楽しんだ後、ゴールデン街で東京のナイトライフを体験しましょう。"
-                },
-                direction: "central",
-                categories: ["nature", "urban"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "3-5 hours",
-                    ja: "3-5時間"
-                },
-                budget: {
-                    en: "¥1,000-¥8,000",
-                    ja: "1,000円～8,000円"
-                },
-                bestSeason: {
-                    en: "Spring (cherry blossoms), Autumn (foliage)",
-                    ja: "春（桜）、秋（紅葉）"
+                    ja: "若者文化の発信地。スクランブル交差点や最新のファッション、インスタ映えスポットが満載。",
+                    en: "Center of youth culture featuring Scramble Crossing, cutting-edge fashion, and Instagram-worthy spots."
                 },
                 modelCourses: {
-                    en: [
-                        "Visit Shinjuku Gyoen (1-2 hours)",
-                        "Explore Omoide Yokocho (Memory Lane) for lunch",
-                        "Visit Tokyo Metropolitan Government Building observatory (free)",
-                        "Experience Golden Gai at night (1-2 hours)"
-                    ],
                     ja: [
-                        "新宿御苑を訪問（1-2時間）",
-                        "思い出横丁で昼食",
-                        "東京都庁展望室を訪問（無料）",
-                        "夜にゴールデン街を体験（1-2時間）"
+                        "10:00 渋谷スクランブル交差点見学",
+                        "10:30 渋谷スクランブルスクエア展望台",
+                        "12:00 渋谷で人気ラーメン店で昼食",
+                        "13:30 原宿竹下通り散策（クレープや最新スイーツ）",
+                        "15:00 明治神宮参拝（都会のオアシス）",
+                        "16:30 表参道ヒルズでショッピング",
+                        "18:00 渋谷の夜景を見ながら夕食"
+                    ],
+                    en: [
+                        "10:00 See Shibuya Scramble Crossing",
+                        "10:30 Shibuya Sky observatory",
+                        "12:00 Lunch at popular ramen shop",
+                        "13:30 Explore Takeshita Street (crepes & trendy sweets)",
+                        "15:00 Visit Meiji Shrine (oasis in the city)",
+                        "16:30 Shopping at Omotesando Hills",
+                        "18:00 Dinner with Shibuya night views"
                     ]
-                }
-            },
-            {
-                id: 4,
-                titles: {
-                    en: "Odaiba & TeamLab Borderless",
-                    ja: "お台場＆チームラボボーダレス"
                 },
-                descriptions: {
-                    en: "Experience futuristic Tokyo in Odaiba with its shopping malls and digital art museum.",
-                    ja: "ショッピングモールとデジタルアートミュージアムがあるお台場で未来的な東京を体験しましょう。"
-                },
-                direction: "east",
-                categories: ["urban", "culture"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
                 timeRequired: {
-                    en: "4-6 hours",
-                    ja: "4-6時間"
+                    ja: "5-7時間",
+                    en: "5-7 hours"
                 },
                 budget: {
-                    en: "¥3,000-¥10,000",
-                    ja: "3,000円～10,000円"
+                    ja: "¥5,000-10,000",
+                    en: "¥5,000-10,000"
                 },
                 bestSeason: {
-                    en: "All year (indoor attractions)",
-                    ja: "通年（屋内アトラクション）"
-                },
-                modelCourses: {
-                    en: [
-                        "Visit TeamLab Borderless (2-3 hours)",
-                        "Explore Palette Town and VenusFort",
-                        "See the giant Gundam statue",
-                        "Enjoy sunset views of Rainbow Bridge"
-                    ],
-                    ja: [
-                        "チームラボボーダレスを訪問（2-3時間）",
-                        "パレットタウンとヴィーナスフォートを探索",
-                        "巨大ガンダム像を見る",
-                        "レインボーブリッジの夕日を楽しむ"
-                    ]
-                }
-            },
-            {
-                id: 5,
-                titles: {
-                    en: "Akihabara Electric Town",
-                    ja: "秋葉原電気街"
-                },
-                descriptions: {
-                    en: "Discover Tokyo's otaku culture in Akihabara, the center of anime, manga, and electronics.",
-                    ja: "アニメ、マンガ、電子機器の中心地である秋葉原で東京のオタク文化を発見しましょう。"
-                },
-                direction: "central",
-                categories: ["urban", "culture"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "3-5 hours",
-                    ja: "3-5時間"
-                },
-                budget: {
-                    en: "¥2,000-¥20,000",
-                    ja: "2,000円～20,000円"
-                },
-                bestSeason: {
-                    en: "All year",
-                    ja: "通年"
-                },
-                modelCourses: {
-                    en: [
-                        "Explore electronics stores like Yodobashi Camera",
-                        "Visit anime and manga shops",
-                        "Try a maid cafe (optional)",
-                        "Browse hobby and collectible stores"
-                    ],
-                    ja: [
-                        "ヨドバシカメラなどの電気店を探索",
-                        "アニメとマンガの店を訪問",
-                        "メイドカフェを試す（オプション）",
-                        "ホビーとコレクタブルストアを閲覧"
-                    ]
-                }
-            },
-            {
-                id: 6,
-                titles: {
-                    en: "Ueno Park & Museums",
-                    ja: "上野公園＆博物館"
-                },
-                descriptions: {
-                    en: "Enjoy culture and nature at Ueno Park, home to several major museums and Ueno Zoo.",
-                    ja: "いくつかの主要な博物館と上野動物園がある上野公園で文化と自然を楽しみましょう。"
-                },
-                direction: "east",
-                categories: ["culture", "nature"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "4-6 hours",
-                    ja: "4-6時間"
-                },
-                budget: {
-                    en: "¥1,000-¥5,000",
-                    ja: "1,000円～5,000円"
-                },
-                bestSeason: {
-                    en: "Spring (cherry blossoms), Autumn",
-                    ja: "春（桜）、秋"
-                },
-                modelCourses: {
-                    en: [
-                        "Visit Ueno Zoo (1-2 hours)",
-                        "Explore Tokyo National Museum (1-2 hours)",
-                        "Walk through Shinobazu Pond",
-                        "Visit Ameya-Yokocho market"
-                    ],
-                    ja: [
-                        "上野動物園を訪問（1-2時間）",
-                        "東京国立博物館を探索（1-2時間）",
-                        "不忍池を散歩",
-                        "アメヤ横丁市場を訪問"
-                    ]
-                }
-            },
-            {
-                id: 7,
-                titles: {
-                    en: "Tsukiji Outer Market & Ginza",
-                    ja: "築地場外市場＆銀座"
-                },
-                descriptions: {
-                    en: "Experience fresh seafood at Tsukiji Outer Market, then explore the luxury shopping district of Ginza.",
-                    ja: "築地場外市場で新鮮なシーフードを体験し、その後高級ショッピング地区の銀座を探索しましょう。"
-                },
-                direction: "central",
-                categories: ["food", "urban"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "3-4 hours",
-                    ja: "3-4時間"
-                },
-                budget: {
-                    en: "¥3,000-¥20,000",
-                    ja: "3,000円～20,000円"
-                },
-                bestSeason: {
-                    en: "All year",
-                    ja: "通年"
-                },
-                modelCourses: {
-                    en: [
-                        "Have breakfast at Tsukiji Outer Market (1 hour)",
-                        "Visit Hama-rikyu Gardens (30 mins)",
-                        "Explore Ginza shopping district (1-2 hours)",
-                        "Visit Itoya stationery store"
-                    ],
-                    ja: [
-                        "築地場外市場で朝食（1時間）",
-                        "浜離宮恩賜庭園を訪問（30分）",
-                        "銀座ショッピング地区を探索（1-2時間）",
-                        "伊東屋文具店を訪問"
-                    ]
-                }
-            },
-            {
-                id: 8,
-                titles: {
-                    en: "Roppongi Hills & Mori Art Museum",
-                    ja: "六本木ヒルズ＆森美術館"
-                },
-                descriptions: {
-                    en: "Enjoy art and city views at Roppongi Hills, Tokyo's premier art and entertainment complex.",
-                    ja: "東京の主要なアートとエンターテインメントコンプレックスである六本木ヒルズでアートと都市の景色を楽しみましょう。"
-                },
-                direction: "central",
-                categories: ["culture", "urban"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "3-4 hours",
-                    ja: "3-4時間"
-                },
-                budget: {
-                    en: "¥2,000-¥8,000",
-                    ja: "2,000円～8,000円"
-                },
-                bestSeason: {
-                    en: "All year",
-                    ja: "通年"
-                },
-                modelCourses: {
-                    en: [
-                        "Visit Mori Art Museum (1-2 hours)",
-                        "Go to Tokyo City View observation deck",
-                        "Explore Roppongi Hills shopping",
-                        "Visit nearby National Art Center"
-                    ],
-                    ja: [
-                        "森美術館を訪問（1-2時間）",
-                        "東京シティビュー展望台へ",
-                        "六本木ヒルズのショッピングを探索",
-                        "近くの国立新美術館を訪問"
-                    ]
-                }
-            },
-            {
-                id: 9,
-                titles: {
-                    en: "Mount Takao",
-                    ja: "高尾山"
-                },
-                descriptions: {
-                    en: "Escape the city and hike Mount Takao, a popular nature spot just an hour from central Tokyo.",
-                    ja: "都心からわずか1時間の距離にある人気の自然スポット、高尾山でハイキングを楽しみましょう。"
-                },
-                direction: "west",
-                categories: ["nature"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "5-7 hours",
-                    ja: "5-7時間"
-                },
-                budget: {
-                    en: "¥1,000-¥3,000",
-                    ja: "1,000円～3,000円"
-                },
-                bestSeason: {
-                    en: "Spring, Autumn",
-                    ja: "春、秋"
-                },
-                modelCourses: {
-                    en: [
-                        "Take Keio Line to Takaosanguchi Station",
-                        "Choose a hiking trail (1-3 hours)",
-                        "Visit Yakuoin Temple at the summit",
-                        "Try local specialties like tororo soba"
-                    ],
-                    ja: [
-                        "京王線で高尾山口駅へ",
-                        "ハイキングコースを選択（1-3時間）",
-                        "山頂の薬王院を訪問",
-                        "とろろそばなどの地元の名物を試す"
-                    ]
-                }
-            },
-            {
-                id: 10,
-                titles: {
-                    en: "Yokohama Minato Mirai",
-                    ja: "横浜みなとみらい"
-                },
-                descriptions: {
-                    en: "Visit Yokohama's waterfront district with its museums, shopping, and iconic Ferris wheel.",
-                    ja: "博物館、ショッピング、象徴的な観覧車がある横浜のウォーターフロント地区を訪問しましょう。"
-                },
-                direction: "south",
-                categories: ["urban", "culture"],
-                image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                timeRequired: {
-                    en: "4-6 hours",
-                    ja: "4-6時間"
-                },
-                budget: {
-                    en: "¥3,000-¥8,000",
-                    ja: "3,000円～8,000円"
-                },
-                bestSeason: {
-                    en: "All year",
-                    ja: "通年"
-                },
-                modelCourses: {
-                    en: [
-                        "Visit Cup Noodles Museum (1-2 hours)",
-                        "Explore Red Brick Warehouse",
-                        "Ride the Cosmo Clock 21 Ferris wheel",
-                        "Walk along Yamashita Park"
-                    ],
-                    ja: [
-                        "カップヌードルミュージアムを訪問（1-2時間）",
-                        "赤レンガ倉庫を探索",
-                        "コスモクロック21観覧車に乗る",
-                        "山下公園を散歩"
-                    ]
+                    ja: "通年",
+                    en: "All year"
                 }
             }
+        
+            ,
+            // ... (other spots would be here) ...
         ];
 
-        // Service Worker登録
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => {
-                        console.log('ServiceWorker registration successful with scope: ', reg.scope);
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
+        // App state - initialized with dark mode and English
+        let currentLang = 'en';
+        let currentTheme = 'dark';
+        let currentFilter = {
+            direction: "all",
+            category: "all"
+        };
 
-        // インストールプロンプト処理
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-        const installBanner = document.getElementById('installBanner');
-        const installBannerBtn = document.getElementById('installBannerBtn');
-        const installBannerClose = document.getElementById('installBannerClose');
-        const installBannerText = document.getElementById('installBannerText');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            // インストールボタンを表示
-            installBtn.style.display = 'flex';
-            
-            // iOSなどPWAインストールをサポートしていないブラウザの場合
-            if (isIOS() && !isInStandaloneMode()) {
-                showIOSInstallBanner();
-            }
-            
-            installBtn.addEventListener('click', async () => {
-                installBtn.style.display = 'none';
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log('User response:', outcome);
-                deferredPrompt = null;
-            });
-        });
-
-        window.addEventListener('appinstalled', () => {
-            installBtn.style.display = 'none';
-            installBanner.style.display = 'none';
-            console.log('PWA installed successfully');
-        });
-
-        // iOSインストールバナーを表示
-        function showIOSInstallBanner() {
-            if (!isInStandaloneMode()) {
-                installBannerText.textContent = translations[currentLang].iosInstall;
-                installBanner.style.display = 'flex';
-            }
-        }
-
-        installBannerBtn.addEventListener('click', () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                    deferredPrompt = null;
-                });
-            }
-            installBanner.style.display = 'none';
-        });
-
-        installBannerClose.addEventListener('click', () => {
-            installBanner.style.display = 'none';
-        });
-
-        // スプラッシュスクリーン非表示
-        function hideSplashScreen() {
-            const splash = document.getElementById('splash');
-            if (splash) {
-                splash.style.opacity = '0';
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                }, 300);
-            }
-        }
-
-        // iOSかどうかを判定
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        }
-
-        // スタンドアロンモードかどうかを判定
-        function isInStandaloneMode() {
-            return window.matchMedia('(display-mode: standalone)').matches || 
-                   window.navigator.standalone ||
-                   document.referrer.includes('android-app://');
-        }
-
-        // アプリ初期化
+        // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            // ユーザー設定をローカルストレージから読み込み
-            const savedTheme = localStorage.getItem('theme');
-            const savedLang = localStorage.getItem('lang');
-            
-            if (savedTheme) currentTheme = savedTheme;
-            if (savedLang) currentLang = savedLang;
-            
-            setTimeout(hideSplashScreen, 1500);
-            
+            // Get DOM elements
             const themeBtn = document.getElementById('themeBtn');
             const themeIcon = document.getElementById('themeIcon');
             const themeText = document.getElementById('themeText');
@@ -1095,47 +948,39 @@
             const categoryFilters = document.getElementById('categoryFilters');
             const spotsContainer = document.getElementById('spots-container');
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-            const splashTitle = document.querySelector('.splash-title');
-            const splashSubtitle = document.querySelector('.splash-subtitle');
 
-            if (splashTitle && splashSubtitle) {
-                splashTitle.textContent = translations[currentLang].appTitle;
-                splashSubtitle.textContent = translations[currentLang].appSubtitle;
-            }
-
+            // Set initial theme and language
             document.documentElement.setAttribute('data-theme', currentTheme);
             updateUI();
 
-            // iOSでスタンドアロンモードでない場合、インストールバナーを表示
-            if (isIOS() && !isInStandaloneMode()) {
-                setTimeout(showIOSInstallBanner, 5000);
-            }
-
+            // Theme toggle
             themeBtn.addEventListener('click', function() {
                 currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 document.documentElement.setAttribute('data-theme', currentTheme);
-                localStorage.setItem('theme', currentTheme);
                 updateThemeButton();
             });
 
+            // Language toggle
             langBtn.addEventListener('click', function() {
                 currentLang = currentLang === 'en' ? 'ja' : 'en';
-                localStorage.setItem('lang', currentLang);
                 updateUI();
                 renderSpots();
             });
 
+            // Scroll to top
             scrollToTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
 
+            // Update UI elements
             function updateUI() {
                 appTitle.textContent = translations[currentLang].appTitle;
                 appSubtitle.textContent = translations[currentLang].appSubtitle;
                 langText.textContent = translations[currentLang].switchLang;
                 scrollToTopBtn.textContent = translations[currentLang].scrollToTop;
-                installBannerText.textContent = translations[currentLang].installPrompt;
-                installBannerBtn.textContent = translations[currentLang].installBtn;
                 updateThemeButton();
                 renderDirectionTabs();
                 renderCategoryFilters();
@@ -1218,7 +1063,7 @@
 
                     spotCard.innerHTML = `
                         <div>
-                            <img src="${spot.image}" alt="${title}" class="spot-image" loading="lazy">
+                            <img src="${spot.image}" alt="${title}" class="spot-image">
                             <div class="spot-meta">
                                 <span class="direction-tag">${directionText}</span>
                                 ${categoryTags}
@@ -1236,25 +1081,18 @@
                         <div>
                             <h3 class="spot-title">${title}</h3>
                             <p>${description}</p>
+                            
                             <div class="model-course">
                                 <h4>${modelCourseTitle}</h4>
-                                ${modelCourseSteps.map(step => `<div class="course-step">${step}</div>`).join('')}
+                                ${modelCourseSteps.map(step => `
+                                    <div class="course-step">${step}</div>
+                                `).join('')}
                             </div>
                         </div>
                     `;
                     
                     spotsContainer.appendChild(spotCard);
                 });
-            }
-        });
-
-        // スクロール時にトップへ戻るボタンを表示/非表示
-        window.addEventListener('scroll', function() {
-            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.style.display = 'block';
-            } else {
-                scrollToTopBtn.style.display = 'none';
             }
         });
     </script>
